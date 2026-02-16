@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<div class="box-info full" id="taskFormContainer">
+    <h2>Shopping Cart</h2>
+    <div class="panel-body pt-0">
+        <table class="table table-bordered">
+            <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Action</th>
+            </thead>
+            <tbody id="cartTableBody">
+                <!-- Cart items loaded by JS -->
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <h3>Grand Total: $<span id="grandTotal">0.00</span></h3>
+                <button class="btn btn-success btn-lg" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade-scale" id="myModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="https://demo.test.cloint.com/assets/images/spinner.gif" width="40" style="margin: 60px auto;"
+                    alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

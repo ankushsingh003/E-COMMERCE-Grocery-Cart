@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Catalog{% endblock %}
+
+{% block content %}
+<div class="box-info full" id="taskFormContainer">
+    <div
+        style="background: url('https://img.freepik.com/free-photo/flat-lay-vegetables-with-copy-space_23-2148517228.jpg?w=1380&t=st=1675765764~exp=1675766364~hmac=5066378957865768565785685675678567895678') no-repeat center center; background-size: cover; height: 250px; position: relative; border-radius: 8px 8px 0 0;">
+        <div
+            style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 20px; color: white; border-radius: 0 0 8px 8px;">
+            <h1 style="margin: 0; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Welcome to Fresh Market
+            </h1>
+            <p style="font-size: 18px; margin: 5px 0 0;">Where Quality Meets Freshness</p>
+        </div>
+    </div>
+    <div class="panel-body pt-0" style="margin-top: 20px;">
+        <h2 style="padding-left: 15px; border-left: 5px solid #4caf50; margin-bottom: 20px;">Featured Products</h2>
+        <div class="row" id="productGrid">
+            <!-- Products will load here -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade-scale" id="myModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="https://demo.test.cloint.com/assets/images/spinner.gif" width="40" style="margin: 60px auto;"
+                    alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/custom/catalog.js') }}"></script>
+{% endblock %}
