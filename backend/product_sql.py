@@ -1,15 +1,16 @@
 import mysql.connector
+import os
 
-
-
+def get_db_connection():
+    return mysql.connector.connect(
+        host=os.environ.get("DB_HOST", "localhost"),
+        user=os.environ.get("DB_USER", "root"),
+        password=os.environ.get("DB_PASSWORD", "sangita143@H"),
+        database=os.environ.get("DB_NAME", "gs")
+    )
 
 def get_all_products():
-    cnx = mysql.connector.connect(host="localhost",
-                                  user="root",
-                                  password="sangita143@H",  # Try empty password
-                                  database="gs")
-
-
+    cnx = get_db_connection()
     cursor = cnx.cursor()
 
     query = "SELECT products.product_id , products.name , products.uom_id , products.price_per_unit , uom.uom_name FROM products inner join uom on products.uom_id=uom.uom_id"
@@ -25,17 +26,12 @@ def get_all_products():
             "uom_name": uom_name
         })
 
-
     cnx.close()
     return response
 
 
 def insert_new_product(product_name, uom_id, price_per_unit):
-    cnx = mysql.connector.connect(host="localhost",
-                                  user="root",
-                                  password="sangita143@H",  # Try empty password
-                                  database="gs")
-
+    cnx = get_db_connection()
     cursor = cnx.cursor()
 
     query = "INSERT INTO products (name, uom_id, price_per_unit) VALUES (%s, %s, %s)"
@@ -46,7 +42,7 @@ def insert_new_product(product_name, uom_id, price_per_unit):
     return True
 
 def get_uoms():
-    cnx = mysql.connector.connect(host="localhost", user="root", password="sangita143@H", database="gs")
+    cnx = get_db_connection()
     cursor = cnx.cursor()
     query = "SELECT * FROM uom"
     cursor.execute(query)
@@ -57,7 +53,7 @@ def get_uoms():
     return response
 
 def insert_order(order):
-    cnx = mysql.connector.connect(host="localhost", user="root", password="sangita143@H", database="gs")
+    cnx = get_db_connection()
     cursor = cnx.cursor()
     
     # Insert Order
@@ -83,7 +79,7 @@ def insert_order(order):
 
 if __name__ == "__main__":
     print(get_all_products())
-    insert_new_product("bread", 1, 10)  # Changed uom_id from 2 (not exists) to 1 ('each')
-    print(get_all_products())  # Verify insertion
+    # insert_new_product("bread", 1, 10) 
+    # print(get_all_products())
 
 

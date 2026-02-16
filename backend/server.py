@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify, render_template, session, redirect, u
 import mysql.connector
 from product_sql import get_all_products, insert_new_product, get_uoms, insert_order
 
+import os
+
 app = Flask(__name__, template_folder='../UI/templates', static_folder='../UI/static')
-app.secret_key = 'super_secret_key'
+app.secret_key = os.environ.get('SECRET_KEY', 'super_secret_key')
 
 @app.route('/', methods=['GET'])
 def index():
