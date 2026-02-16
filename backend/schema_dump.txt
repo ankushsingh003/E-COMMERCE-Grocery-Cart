@@ -1,0 +1,11 @@
+--- ORDERS TABLE SCHEMA ---
+Column: order_id, Type: int
+Column: customer_name, Type: varchar(100)
+Column: total_price, Type: double
+Column: date_time, Type: datetime
+
+--- ORDER DETAILS SCHEMA ---
+Column: order_id, Type: int
+Column: product_id, Type: int
+Column: quantity, Type: double
+Column: total_price, Type: double

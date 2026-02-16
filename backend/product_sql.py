@@ -61,7 +61,7 @@ def insert_order(order):
     cursor = cnx.cursor()
     
     # Insert Order
-    order_query = "INSERT INTO orders (customer_name, total, datetime) VALUES (%s, %s, NOW())"
+    order_query = "INSERT INTO orders (customer_name, total_price, date_time) VALUES (%s, %s, NOW())"
     cursor.execute(order_query, (order['customer_name'], order['grand_total']))
     order_id = cursor.lastrowid
     

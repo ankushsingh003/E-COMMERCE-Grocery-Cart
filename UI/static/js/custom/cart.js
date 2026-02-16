@@ -16,7 +16,18 @@ function addToCart(id, name, price) {
         cart.push({ id: id, name: name, price: price, qty: 1 });
     }
     saveCart();
-    alert(name + " added to cart!");
+
+    // Animation and feedback
+    var btn = $(`.add-btn-${id}`);
+    var originalText = btn.text();
+
+    btn.addClass('btn-added').text("Added! \u2713");
+
+    setTimeout(function () {
+        btn.removeClass('btn-added').text(originalText);
+    }, 1000);
+
+    // alert(name + " added to cart!"); // Removed blocking alert in favor of animation
 }
 
 function saveCart() {

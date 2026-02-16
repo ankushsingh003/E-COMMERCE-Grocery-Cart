@@ -41,27 +41,31 @@
                         </ul>
                         <form class="navbar-form navbar-left">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search products..."
-                                    style="width: 300px;">
+                                <input type="text" class="form-control" id="searchInput"
+                                    placeholder="Search products..." style="width: 300px;">
                             </div>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{ url_for('cart_view') }}" title="Cart"><i
                                         class="zmdi zmdi-shopping-cart zmdi-hc-fw"></i> Cart <span id="cartCount"
                                         class="badge">0</span></a></li>
+                            {% if session.get('user') %}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-account"></i> User
+                                    aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-account"></i> {{
+                                    session['user'] }}
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
                                     <li><a href="#">Orders</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#">Logout</a></li>
+                                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ url_for('manage_product') }}"><i class="zmdi zmdi-settings"></i> Admin</a>
                             </li>
+                            {% else %}
+                            <li><a href="{{ url_for('login') }}"><i class="zmdi zmdi-lock"></i> Login</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
